@@ -1,6 +1,6 @@
 <?php
 
-function checkLog()
+function checkIfLoginStillActive()
 {
     $CI = &get_instance();
     $level = $CI->session->userdata('level');
@@ -9,11 +9,18 @@ function checkLog()
     }
 }
 
-function checkLogin()
+function checkIfNotLoginYet()
 {
     $CI = &get_instance();
     $level = $CI->session->userdata('level');
     if (empty($level)) {
         redirect('auth/login');
     }
+}
+
+function isLoggedIn()
+{
+    $CI = &get_instance();
+    $level = $CI->session->userdata('username');
+    return empty($username);
 }

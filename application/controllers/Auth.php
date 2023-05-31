@@ -11,7 +11,7 @@ class Auth extends CI_Controller
 
     function login()
     {
-        checkLog();
+        checkIfLoginStillActive();
         $this->load->view('auth/login');
     }
 
