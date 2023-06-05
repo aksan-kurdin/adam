@@ -1,5 +1,5 @@
 <h2 class="page-title">
-    Data Barang
+    Master: Parts
 </h2>
 <div class="row">
     <div class="col-md-12">
@@ -17,10 +17,10 @@
                 <table class=" table table-striped table-bordered">
                     <thead>
                         <th>No</th>
-                        <th>Kode Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Satuan</th>
-                        <th>Aksi</th>
+                        <th>Parts ID</th>
+                        <th>Parts Name</th>
+                        <th>U/M</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                         <?php
@@ -33,10 +33,10 @@
                                 <td> <?php echo $b->nama_barang; ?> </td>
                                 <td> <?php echo $b->satuan; ?> </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary edit" data-kodebarang="<?php echo $b->kode_barang; ?>">
+                                    <a href="#" class="btn btn-sm btn-primary edit" data-kode_barang="<?php echo $b->kode_barang; ?>">
                                         <i class="fa fa-solid fa-pencil"> </i>
                                     </a>
-                                    <a href="#" class="btn btn-sm btn-danger delete" data-kodebarang="<?php echo $b->kode_barang; ?>" data-href="<?php echo base_url(); ?>barang/delete/<?php echo $b->kode_barang; ?>">
+                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>barang/delete/<?php echo $b->kode_barang; ?>">
                                         <i class=" fa fa-trash-o"> </i>
                                     </a>
                                 </td>
@@ -58,7 +58,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Input Barang</h5>
+                <h5 class="modal-title">Data Input</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -72,7 +72,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Barang</h5>
+                <h5 class="modal-title">Data Update</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -107,7 +107,7 @@
 
     $(function() {
         $(".edit").click(function() {
-            var kodebarang = $(this).attr("data-kodebarang");
+            var kodebarang = $(this).attr("data-kode_barang");
             $("#modalEdit").modal("show");
             $("#formEdit").load("<?php echo base_url(); ?>barang/edit/" + kodebarang);
         });

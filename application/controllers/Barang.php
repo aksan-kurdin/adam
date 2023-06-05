@@ -22,12 +22,12 @@ class Barang extends CI_Controller
     function add()
     {
         $data = array(
-            'kode_barang' => $this->input->post('kodebarang'),
-            'nama_barang' => $this->input->post('namabarang'),
+            'kode_barang' => $this->input->post('kode_barang'),
+            'nama_barang' => $this->input->post('nama_barang'),
             'satuan' => $this->input->post('satuan')
         );
-        $simpan = $this->M_barang->insert($data);
-        if ($simpan == 1) {
+        $added = $this->M_barang->insert($data);
+        if ($added == 1) {
             $this->session->set_flashdata(
                 'msg',
                 '<div class="alert alert-success" role="alert">
@@ -35,7 +35,6 @@ class Barang extends CI_Controller
                 Saved succesfully.
                 </div>'
             );
-            redirect('barang');
         } else {
             $this->session->set_flashdata(
                 'msg',
@@ -44,8 +43,8 @@ class Barang extends CI_Controller
                 Failed to save.
                 </div>'
             );
-            redirect('barang');
         }
+        redirect('barang');
     }
 
     function edit()
@@ -58,11 +57,11 @@ class Barang extends CI_Controller
     function update()
     {
         $data = array(
-            'nama_barang' => $this->input->post('namabarang'),
+            'nama_barang' => $this->input->post('nama_barang'),
             'satuan' => $this->input->post('satuan')
         );
-        $simpan = $this->M_barang->update($data, $this->input->post('kodebarang'));
-        if ($simpan == 1) {
+        $updated = $this->M_barang->update($data, $this->input->post('kode_barang'));
+        if ($updated == 1) {
             $this->session->set_flashdata(
                 'msg',
                 '<div class="alert alert-success" role="alert">
@@ -70,7 +69,6 @@ class Barang extends CI_Controller
                 Updated succesfully.
                 </div>'
             );
-            redirect('barang');
         } else {
             $this->session->set_flashdata(
                 'msg',
@@ -79,8 +77,8 @@ class Barang extends CI_Controller
                 Failed to update.
                 </div>'
             );
-            redirect('barang');
         }
+        redirect('barang');
     }
 
     function delete()
@@ -95,7 +93,6 @@ class Barang extends CI_Controller
                 Delete succesfully.
                 </div>'
             );
-            redirect('barang');
         } else {
             $this->session->set_flashdata(
                 'msg',
@@ -104,7 +101,7 @@ class Barang extends CI_Controller
                 Failed to delete.
                 </div>'
             );
-            redirect('barang');
         }
+        redirect('barang');
     }
 }

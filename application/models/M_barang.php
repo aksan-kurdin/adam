@@ -9,8 +9,8 @@ class M_barang extends CI_Model
 
     function insert($data)
     {
-        $saved = $this->db->insert('barang_master', $data);
-        if ($saved) {
+        $inserted = $this->db->insert('barang_master', $data);
+        if ($inserted) {
             return 1;
         } else {
             return 0;
@@ -24,8 +24,8 @@ class M_barang extends CI_Model
 
     function update($data, $kode_barang)
     {
-        $saved = $this->db->update('barang_master', $data, array('kode_barang' => $kode_barang));
-        if ($saved) {
+        $updated = $this->db->update('barang_master', $data, array('kode_barang' => $kode_barang));
+        if ($updated) {
             return 1;
         } else {
             return 0;
