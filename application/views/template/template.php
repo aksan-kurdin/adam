@@ -132,16 +132,16 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="barang">
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>barang">
                                         Parts
                                     </a>
-                                    <a class="dropdown-item" href="pelanggan">
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>pelanggan">
                                         Customers
                                     </a>
-                                    <a class="dropdown-item" href="cabang">
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>cabang">
                                         Branches
                                     </a>
-                                    <a class="dropdown-item" href="harga">
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>barang/harga">
                                         Prices
                                     </a>
                                 </div>
