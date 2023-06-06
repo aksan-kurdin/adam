@@ -1,5 +1,5 @@
 <h2 class="page-title">
-    Master: Parts
+    Master: Customer
 </h2>
 <div class="row">
     <div class="col-md-12">
@@ -17,26 +17,30 @@
                 <table class="table table-striped table-bordered" id="list">
                     <thead>
                         <th>No</th>
-                        <th>Parts ID</th>
-                        <th>Parts Name</th>
-                        <th>U/M</th>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Mobile No</th>
+                        <th>Branch</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($barang as $b) {
+                        foreach ($pelanggan as $p) {
                         ?>
                             <tr>
                                 <td> <?php echo $no; ?> </td>
-                                <td> <?php echo $b->kode_barang; ?> </td>
-                                <td> <?php echo $b->nama_barang; ?> </td>
-                                <td> <?php echo $b->satuan; ?> </td>
+                                <td> <?php echo $p->kode_pelanggan; ?> </td>
+                                <td> <?php echo $p->nama_pelanggan; ?> </td>
+                                <td> <?php echo $p->alamat_pelanggan; ?> </td>
+                                <td> <?php echo $p->no_hp; ?> </td>
+                                <td> <?php echo $p->nama_cabang; ?> </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary edit" data-kode_barang="<?php echo $b->kode_barang; ?>">
+                                    <a href="#" class="btn btn-sm btn-primary edit" data-cust_id="<?php echo $p->kode_pelanggan; ?>">
                                         <i class="fa fa-solid fa-pencil"> </i>
                                     </a>
-                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>barang/delete/<?php echo $b->kode_barang; ?>">
+                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>pelanggan/delete/<?php echo $p->kode_pelanggan; ?>">
                                         <i class=" fa fa-trash-o"> </i>
                                     </a>
                                 </td>
@@ -101,15 +105,15 @@
     $(function() {
         $("#add").click(function() {
             $("#modalAdd").modal("show");
-            $("#formAdd").load("<?php echo base_url(); ?>barang/input");
+            $("#formAdd").load("<?php echo base_url(); ?>pelanggan/input");
         });
     });
 
     $(function() {
         $(".edit").click(function() {
-            var kodebarang = $(this).attr("data-kode_barang");
+            var kode_pelanggan = $(this).attr("data-cust_id");
             $("#modalEdit").modal("show");
-            $("#formEdit").load("<?php echo base_url(); ?>barang/edit/" + kodebarang);
+            $("#formEdit").load("<?php echo base_url(); ?>pelanggan/edit/" + kode_pelanggan);
         });
     });
 

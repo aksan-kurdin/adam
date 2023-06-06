@@ -23,7 +23,7 @@
     <link href="<?php echo base_url(); ?>assets/dist/css/demo.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
-
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <style>
         body {
             display: none;
@@ -31,6 +31,10 @@
 
         .help-block {
             color: red;
+        }
+
+        .dataTables_filter {
+            margin-bottom: 30px;
         }
     </style>
 
@@ -42,9 +46,9 @@
     <script src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/jquery.vmap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <!-- Tabler Core -->
     <script src="<?php echo base_url(); ?>assets/dist/js/tabler.min.js"></script>
-
 
 
 </head>
@@ -129,16 +133,16 @@
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <a class="dropdown-item" href="barang">
-                                        Data Barang
+                                        Parts
+                                    </a>
+                                    <a class="dropdown-item" href="pelanggan">
+                                        Customers
                                     </a>
                                     <a class="dropdown-item" href="./empty.html">
-                                        Data Pelanggan
+                                        Branches
                                     </a>
                                     <a class="dropdown-item" href="./empty.html">
-                                        Data Cabang
-                                    </a>
-                                    <a class="dropdown-item" href="./empty.html">
-                                        Data Harga
+                                        Prices
                                     </a>
                                 </div>
                             </div>
@@ -230,7 +234,7 @@
             </footer>
         </div>
     </div>
-    <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -334,7 +338,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <script>
         document.body.style.display = "block"
     </script>
