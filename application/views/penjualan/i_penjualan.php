@@ -22,7 +22,7 @@
                                 <line x1="19" y1="11" x2="19" y2="13" />
                             </svg>
                         </span>
-                        <input type="text" value="<?php echo $no_faktur; ?>" class="form-control" name="no_faktur" id="no_faktur" placeholder="Invoice No">
+                        <input type="text" name="no_faktur" class="form-control" id="no_faktur" placeholder="Invoice No" value="<?php echo $no_faktur; ?>">
                     </div>
 
                     <div class="input-icon mb-3">
@@ -37,7 +37,7 @@
                                 <line x1="12" y1="15" x2="12" y2="18" />
                             </svg>
                         </span>
-                        <input type="text" value="<?php echo date("Y-m-d"); ?>" class="form-control" name="tgl_transaksi" id="tgl_transaksi" placeholder="Date">
+                        <input type="text" name="tgl_transaksi" class="form-control" id="tgl_transaksi" placeholder="Date" value="<?php echo date("Y-m-d"); ?>">
                     </div>
 
                     <div class="input-icon mb-3">
@@ -49,11 +49,11 @@
                             </svg>
                         </span>
                         <input type="hidden" name="kode_pelanggan" id="kode_pelanggan">
-                        <input type="text" class="form-control" name="nama_pelanggan" id="nama_pelanggan" placeholder="Customer Name">
+                        <input type="text" readonly name="nama_pelanggan" class="form-control" id="nama_pelanggan" placeholder="Customer Name">
                     </div>
 
                     <div class="mb-3">
-                        <select name="jenis_transaksi" id="jenis_transaksi" class="form-select">
+                        <select name="jenis_transaksi" class="form-select" id="jenis_transaksi">
                             <option value="">Select Transaction Type</option>
                             <option value="cash">Cash</option>
                             <option value="credit">Credit</option>
@@ -72,7 +72,7 @@
                                 <line x1="12" y1="15" x2="12" y2="18" />
                             </svg>
                         </span>
-                        <input type="text" readonly class="form-control" name="tgl_jatuh_tempo" id="tgl_jatuh_tempo" placeholder="Due Date">
+                        <input type="text" readonly name="tgl_jatuh_tempo" class="form-control" id="tgl_jatuh_tempo" placeholder="Due Date">
                     </div>
 
                     <div class="input-icon mb-3">
@@ -83,8 +83,8 @@
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                             </svg>
                         </span>
-                        <input type="hidden" value="<?php echo $this->session->userdata('id_user'); ?>" name="id_user">
-                        <input type="text" readonly value="<?php echo $this->session->userdata('id_user') . ' - ' . $this->session->userdata('nama_lengkap'); ?>" class="form-control" name="username" id="username" placeholder="Cashier">
+                        <input type="hidden" name="id_user" id="id_user" value="<?php echo $this->session->userdata('id_user'); ?>">
+                        <input type="text" readonly name="username" class="form-control" id="username" placeholder="Cashier" value="<?php echo $this->session->userdata('id_user') . ' - ' . $this->session->userdata('nama_lengkap'); ?>">
                     </div>
 
                 </div>
@@ -105,6 +105,7 @@
         </div>
     </div>
 
+
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="card">
@@ -121,7 +122,7 @@
                                 <span class="input-icon-addon">
                                     <i class="fa fa-barcode"></i>
                                 </span>
-                                <input type="text" class="form-control" name="kode_barang" id="kode_barang" placeholder="Parts ID">
+                                <input type="text" readonly name="kode_barang" class="form-control" id="kode_barang" placeholder="Parts ID">
                             </div>
                         </div>
 
@@ -136,7 +137,7 @@
                                         <rect x="14" y="14" width="6" height="6" rx="1" />
                                     </svg>
                                 </span>
-                                <input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="Parts Name">
+                                <input type="text" readonly name="nama_barang" class="form-control" id="nama_barang" placeholder="Parts Name">
                             </div>
                         </div>
 
@@ -149,7 +150,7 @@
                                         <path d="M12 3v3m0 12v3" />
                                     </svg>
                                 </span>
-                                <input type="text" class="form-control" name="harga" id="harga" placeholder="Price" style="text-align:right">
+                                <input type="text" readonly name="harga" class="form-control" id="harga" placeholder="Price" style="text-align:right">
                             </div>
                         </div>
 
@@ -167,14 +168,14 @@
                                         <line x1="4" y1="19" x2="20" y2="19" />
                                     </svg>
                                 </span>
-                                <input type="text" class="form-control" name="qty" id="qty" placeholder="Qty">
+                                <input type="text" name="qty" class="form-control" id="qty" placeholder="Qty">
                             </div>
                         </div>
 
                         <div class="col-md-2">
-                            <button class="btn btn-primary">
+                            <a href="#" class="btn btn-primary" id="btn_add_part">
                                 <i class="fa fa-cart-plus" style="font-size:1.5rem"></i>
-                            </button>
+                            </a>
                         </div>
 
                     </div>
@@ -193,7 +194,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="data_temp">
 
                             </tbody>
                             <tfoot>
@@ -217,6 +218,7 @@
 
 </form>
 
+<!-- Modal Pelanggan -->
 <div class="modal modal-blur fade" id="modal_cust" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -225,7 +227,7 @@
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table class="table table-striped table-bordered" id="list">
+                <table class="table table-striped table-bordered" id="list_cust">
                     <thead>
                         <th>No</th>
                         <th>Customer ID</th>
@@ -248,7 +250,59 @@
                                 <td> <?php echo $p->no_hp; ?> </td>
                                 <td> <?php echo $p->nama_cabang; ?> </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary choose" data_kodepel="<?php echo $p->kode_pelanggan; ?>" data_namapel="<?php echo $p->nama_pelanggan; ?>">Select!</a>
+                                    <a href="#" class="btn btn-sm btn-primary choose_pelanggan" data_kodepel="<?php echo $p->kode_pelanggan; ?>" data_namapel="<?php echo $p->nama_pelanggan; ?>">Select!</a>
+                                </td>
+                            </tr>
+
+                        <?php
+                            $no++;
+                        }
+                        ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Barang -->
+<div class="modal modal-blur fade" id="modal_parts" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Parts</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered" id="list_part">
+                    <thead>
+                        <th>No</th>
+                        <th>Price ID</th>
+                        <th>Parts ID</th>
+                        <th>Parts Name</th>
+                        <th>U/M</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Branch</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($harga as $h) {
+                        ?>
+                            <tr>
+                                <td> <?php echo $no; ?> </td>
+                                <td> <?php echo $h->kode_harga; ?> </td>
+                                <td> <?php echo $h->kode_barang; ?> </td>
+                                <td> <?php echo $h->nama_barang; ?> </td>
+                                <td> <?php echo $h->satuan; ?> </td>
+                                <td align="right"> <?php echo number_format($h->harga, '0', '', '.'); ?> </td>
+                                <td> <?php echo $h->stok; ?> </td>
+                                <td> <?php echo $h->kode_cabang; ?> </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-primary choose_harga" data_kodebarang="<?php echo $h->kode_barang; ?>" data_namabarang="<?php echo $h->nama_barang; ?>" data_harga="<?php echo $h->harga; ?>">Select!</a>
                                 </td>
                             </tr>
 
@@ -273,6 +327,7 @@
 
 <script>
     $(function() {
+
         function hide_tgl_jatuh_tempo() {
             $("#jt").hide();
         }
@@ -307,10 +362,26 @@
             });
         }
 
+        function load_temp() {
+            var id_user = $("#id_user").val();
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url(); ?>penjualan/load_temp',
+                data: {
+                    id_user: id_user
+                },
+                cache: false,
+                success: function(respond) {
+                    $("#data_temp").html(respond);
+                }
+            });
+        }
 
+        load_temp();
         cek_barang();
         get_tgl_jatuh_tempo();
         hide_tgl_jatuh_tempo();
+
         $("#jenis_transaksi").change(function() {
             var jenis_transaksi = $(this).val();
             if (jenis_transaksi == "credit") {
@@ -351,11 +422,56 @@
             $("#modal_cust").modal("show");
         });
 
-        $(".choose").click(function() {
+        $(".choose_pelanggan").click(function() {
             $("#kode_pelanggan").val($(this).attr("data_kodepel"));
             $("#nama_pelanggan").val($(this).attr("data_namapel"));
             $("#modal_cust").modal("hide");
         });
-        $("#list").dataTable();
+
+        $("#kode_barang").click(function() {
+            $("#modal_parts").modal("show");
+        });
+
+        $(".choose_harga").click(function() {
+            $("#kode_barang").val($(this).attr("data_kodebarang"));
+            $("#nama_barang").val($(this).attr("data_namabarang"));
+            $("#harga").val($(this).attr("data_harga"));
+            $("#modal_parts").modal("hide");
+        });
+
+        $("#list_cust").dataTable();
+        $("#list_part").dataTable();
+
+        $("#btn_add_part").click(function() {
+            var kode_barang = $("#kode_barang").val();
+            var harga = $("#harga").val();
+            var qty = $("#qty").val();
+            var id_user = $("#id_user").val();
+
+            if (kode_barang == "") {
+                swal("Ooops!", "Parts ID must be filled!", "warning");
+            } else if (qty == "" || qty == 0) {
+                swal("Ooops!", "Qty must be filled!", "warning");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url(); ?>penjualan/save_temp',
+                    data: {
+                        kode_barang: kode_barang,
+                        harga: harga,
+                        qty: qty,
+                        id_user: id_user
+                    },
+                    cache: false,
+                    success: function(respond) {
+                        if (respond == 1) {
+                            swal('Ooops !', "This part already inserted")
+                        } else {
+                            load_temp();
+                        }
+                    }
+                });
+            }
+        });
     });
 </script>

@@ -44,7 +44,7 @@
                                     <a href="#" class="btn btn-sm btn-primary edit" data-kode_harga="<?php echo $h->kode_harga; ?>">
                                         <i class="fa fa-solid fa-pencil"> </i>
                                     </a>
-                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>barang/delete_harga/<?php echo $h->kode_harga; ?>">
+                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>harga/delete/<?php echo $h->kode_harga; ?>">
                                         <i class=" fa fa-trash-o"> </i>
                                     </a>
                                 </td>
@@ -109,7 +109,7 @@
     $(function() {
         $("#add").click(function() {
             $("#modalAdd").modal("show");
-            $("#formAdd").load("<?php echo base_url(); ?>barang/input_harga");
+            $("#formAdd").load("<?php echo base_url(); ?>harga/input");
         });
     });
 
@@ -117,7 +117,7 @@
         $(".edit").click(function() {
             var kode_harga = $(this).attr("data-kode_harga");
             $("#modalEdit").modal("show");
-            $("#formEdit").load("<?php echo base_url(); ?>barang/edit_harga/" + kode_harga);
+            $("#formEdit").load("<?php echo base_url(); ?>harga/edit/" + kode_harga);
         });
     });
 

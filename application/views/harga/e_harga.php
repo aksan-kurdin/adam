@@ -1,4 +1,4 @@
-<form action="<?php echo base_url(); ?>barang/update_harga" class="form_input" method="POST">
+<form action="<?php echo base_url(); ?>harga/update" class="form_input" method="POST">
     <div class="form-group mb-3">
         <input type="text" value="<?php echo $harga['kode_harga']; ?>" readonly class="form-control" name="kode_harga" placeholder="Price ID" id="kode_harga">
     </div>

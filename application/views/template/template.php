@@ -145,7 +145,7 @@
                                     <a class="dropdown-item" href="<?php echo base_url(); ?>cabang">
                                         Branches
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>barang/harga">
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>harga">
                                         Prices
                                     </a>
                                 </div>

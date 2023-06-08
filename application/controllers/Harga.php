@@ -1,34 +1,38 @@
 <?php
 
-class Barang extends CI_Controller
+class Harga extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
+        $this->load->model('M_harga');
         $this->load->model('M_barang');
         $this->load->model('M_cabang');
-        $this->load->model('M_harga');
     }
 
     function index()
     {
-        $data['barang'] = $this->M_barang->list()->result();
-        $this->template->load('template/template', 'barang/v_barang', $data);
+        $data['harga'] = $this->M_harga->list()->result();
+        $this->template->load('template/template', 'harga/v_harga', $data);
     }
 
     function input()
     {
-        $this->load->view('barang/i_barang');
+        $data['barang'] = $this->M_barang->list()->result();
+        $data['cabang'] = $this->M_cabang->list()->result();
+        $this->load->view('harga/i_harga', $data);
     }
 
     function add()
     {
         $data = array(
+            'kode_harga' => $this->input->post('kode_harga'),
             'kode_barang' => $this->input->post('kode_barang'),
-            'nama_barang' => $this->input->post('nama_barang'),
-            'satuan' => $this->input->post('satuan')
+            'harga' => $this->input->post('harga'),
+            'stok' => $this->input->post('stok'),
+            'kode_cabang' => $this->input->post('kode_cabang')
         );
-        $added = $this->M_barang->insert($data);
+        $added = $this->M_harga->insert($data);
         if ($added == 1) {
             $this->session->set_flashdata(
                 'msg',
@@ -46,23 +50,25 @@ class Barang extends CI_Controller
                 </div>'
             );
         }
-        redirect('barang');
+        redirect('harga');
     }
 
     function edit()
     {
-        $kodebarang = $this->uri->segment(3);
-        $data['barang'] = $this->M_barang->get($kodebarang)->row_array();
-        $this->load->view('barang/e_barang', $data);
+        $kode_harga = $this->uri->segment(3);
+        $data['harga'] = $this->M_harga->get($kode_harga)->row_array();
+        $data['barang'] = $this->M_barang->list()->result();
+        $data['cabang'] = $this->M_cabang->list()->result();
+        $this->load->view('harga/e_harga', $data);
     }
 
     function update()
     {
         $data = array(
-            'nama_barang' => $this->input->post('nama_barang'),
-            'satuan' => $this->input->post('satuan')
+            'harga' => $this->input->post('harga'),
+            'stok' => $this->input->post('stok')
         );
-        $updated = $this->M_barang->update($data, $this->input->post('kode_barang'));
+        $updated = $this->M_harga->update($data, $this->input->post('kode_harga'));
         if ($updated == 1) {
             $this->session->set_flashdata(
                 'msg',
@@ -80,13 +86,13 @@ class Barang extends CI_Controller
                 </div>'
             );
         }
-        redirect('barang');
+        redirect('harga');
     }
 
     function delete()
     {
-        $kode_barang = $this->uri->segment(3);
-        $deleted = $this->M_barang->delete($kode_barang);
+        $kode_harga = $this->uri->segment(3);
+        $deleted = $this->M_harga->delete($kode_harga);
         if ($deleted == 1) {
             $this->session->set_flashdata(
                 'msg',
@@ -104,8 +110,6 @@ class Barang extends CI_Controller
                 </div>'
             );
         }
-        redirect('barang');
+        redirect('harga');
     }
-
-    
 }
