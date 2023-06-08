@@ -10714,9 +10714,6 @@ a.badge {
 }
 .btn i,
 .btn svg {
-	width: 1.25rem;
-	height: 1.25rem;
-	margin: 0 0.5rem 0;
 	-webkit-margin-start: -0.25rem;
 	margin-inline-start: -0.25rem;
 	vertical-align: bottom;

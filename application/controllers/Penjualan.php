@@ -49,7 +49,7 @@ class Penjualan extends CI_Controller
         $harga = $this->input->post('harga');
         $qty = $this->input->post('qty');
         $id_user = $this->input->post('id_user');
-        
+
         $is_temp_exist = $this->M_penjualan->is_temp_exist($kode_barang, $id_user)->num_rows();
         if ($is_temp_exist > 0) {
             echo "1";
@@ -69,5 +69,13 @@ class Penjualan extends CI_Controller
         $id_user = $this->input->post('id_user');
         $data['barang_temp'] = $this->M_penjualan->get_temp($id_user)->result();
         $this->load->view('penjualan/v_temp', $data);
+    }
+
+    function delete_temp()
+    {
+        $kode_barang = $this->input->post('kodebarang');
+        $id_user = $this->input->post('iduser');
+        $deleted = $this->M_penjualan->delete_temp($kode_barang, $id_user);
+        echo $deleted;
     }
 }

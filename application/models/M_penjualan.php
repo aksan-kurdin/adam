@@ -33,10 +33,18 @@ class M_penjualan extends CI_Model
 
     function get_temp($id_user)
     {
-        $this->db->select('penjualan_detail_temp.kode_barang, nama_barang, harga, qty, (qty * harga) as total');
+        $this->db->select('penjualan_detail_temp.kode_barang, nama_barang, harga, qty, (qty * harga) as total, id_user');
         $this->db->from('penjualan_detail_temp');
         $this->db->join('barang_master', 'penjualan_detail_temp.kode_barang = barang_master.kode_barang');
         $this->db->where('id_user', $id_user);
         return $this->db->get();
+    }
+
+    function delete_temp($kode_barang, $id_user)
+    {
+        $deleted = $this->db->delete('penjualan_detail_temp', array('kode_barang' => $kode_barang, 'id_user' => $id_user));
+        if ($deleted) {
+            return 1;
+        }
     }
 }

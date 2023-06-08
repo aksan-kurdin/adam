@@ -197,13 +197,6 @@
                             <tbody id="data_temp">
 
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="5">Grand Total</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
                         </table>
 
                         <div class="row mt-3">
