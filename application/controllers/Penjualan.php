@@ -6,6 +6,7 @@ class Penjualan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_penjualan');
+        $this->load->model('M_pelanggan');
     }
 
     function index()
@@ -23,6 +24,7 @@ class Penjualan extends CI_Controller
         $thn = substr($tahun, 2, 2);
         $no_faktur = buatkode($last_no, $cabang . $bulan . $thn, 4);
         $data['no_faktur'] = $no_faktur;
+        $data['pelanggan'] = $this->M_pelanggan->list()->result();;
         $this->template->load('template/template',  'penjualan/i_penjualan', $data);
     }
 

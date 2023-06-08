@@ -4,6 +4,10 @@ class M_pelanggan extends CI_Model
 {
     function list()
     {
+        $cabang = $this->session->userdata('kode_cabang');
+        if ($cabang != 'PST') {
+            $this->db->where('pelanggan.kode_cabang', $cabang);
+        }
         $this->db->join('cabang', 'pelanggan.kode_cabang = cabang.kode_cabang');
         return $this->db->get('pelanggan');
     }

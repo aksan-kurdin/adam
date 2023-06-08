@@ -217,6 +217,54 @@
 
 </form>
 
+<div class="modal modal-blur fade" id="modal_cust" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Customers</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered" id="list">
+                    <thead>
+                        <th>No</th>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Mobile No</th>
+                        <th>Branch</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($pelanggan as $p) {
+                        ?>
+                            <tr>
+                                <td> <?php echo $no; ?> </td>
+                                <td> <?php echo $p->kode_pelanggan; ?> </td>
+                                <td> <?php echo $p->nama_pelanggan; ?> </td>
+                                <td> <?php echo $p->alamat_pelanggan; ?> </td>
+                                <td> <?php echo $p->no_hp; ?> </td>
+                                <td> <?php echo $p->nama_cabang; ?> </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-primary choose" data_kodepel="<?php echo $p->kode_pelanggan; ?>" data_namapel="<?php echo $p->nama_pelanggan; ?>">Select!</a>
+                                </td>
+                            </tr>
+
+                        <?php
+                            $no++;
+                        }
+                        ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         flatpickr(document.getElementById('tgl_transaksi'), {});
@@ -298,5 +346,16 @@
                 return true;
             }
         });
+
+        $("#nama_pelanggan").click(function() {
+            $("#modal_cust").modal("show");
+        });
+
+        $(".choose").click(function() {
+            $("#kode_pelanggan").val($(this).attr("data_kodepel"));
+            $("#nama_pelanggan").val($(this).attr("data_namapel"));
+            $("#modal_cust").modal("hide");
+        });
+        $("#list").dataTable();
     });
 </script>
