@@ -16,6 +16,7 @@
     <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
     <!-- CSS files -->
     <link href="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/dist/css/tabler.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/dist/css/tabler-flags.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/dist/css/tabler-payments.min.css" rel="stylesheet" />
@@ -47,6 +48,9 @@
     <script src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/plugins/rangePlugin.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Tabler Core -->
     <script src="<?php echo base_url(); ?>assets/dist/js/tabler.min.js"></script>
 
@@ -101,7 +105,7 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="navbar-nav pt-lg-3">
                     <li class="nav-item">
-                        <a class="nav-link" href=".">
+                        <a class="nav-link" href="<?php echo base_url(); ?>">
                             <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="5 12 3 12 12 3 21 12 19 12" />
@@ -166,7 +170,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="./empty.html">
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>penjualan">
                                         Selling Transaction
                                     </a>
                                 </div>
