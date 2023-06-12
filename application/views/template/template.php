@@ -15,16 +15,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
     <!-- CSS files -->
-    <link href="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/dist/css/tabler.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/dist/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/dist/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/dist/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/dist/css/demo.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/jqvmap.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/tabler.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/tabler-flags.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/tabler-payments.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/tabler-vendors.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/demo.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/jquery.dataTables.min.css">
     <style>
         body {
             display: none;
@@ -40,17 +40,17 @@
     </style>
 
     <!-- Libs JS -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/js/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="<?php echo base_url(); ?>assets/dist/libs/jquery/dist/jquery.slim.min.js"></script> -->
-    <script src="<?php echo base_url(); ?>assets/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/plugins/rangePlugin.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/libs/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/plugins/rangePlugin.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/js/sweetalert.min.js"></script>
     <!-- Tabler Core -->
     <script src="<?php echo base_url(); ?>assets/dist/js/tabler.min.js"></script>
 

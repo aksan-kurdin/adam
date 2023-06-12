@@ -1,7 +1,8 @@
 <h2 class="page-title mb-3">
     Detail Sell
 </h2>
-<form id="form_sell" action="POST">
+<div><?php echo $this->session->flashdata('msg'); ?></div>
+<form id="form_sell" method="POST" action="<?php echo base_url(); ?>penjualan/save">
     <input type="hidden" name="cek_barang">
     <div class="row">
         <div class="col-md-5">
@@ -22,7 +23,7 @@
                                 <line x1="19" y1="11" x2="19" y2="13" />
                             </svg>
                         </span>
-                        <input type="text" name="no_faktur" class="form-control" id="no_faktur" placeholder="Invoice No" value="<?php echo $no_faktur; ?>">
+                        <input type="text" readonly name="no_faktur" class="form-control" id="no_faktur" placeholder="Invoice No" value="<?php echo $no_faktur; ?>">
                     </div>
 
                     <div class="input-icon mb-3">
@@ -440,7 +441,7 @@
             var harga = $("#harga").val();
             var qty = $("#qty").val();
             var id_user = $("#id_user").val();
-
+            console.log(kode_barang + "|" + harga + "|" + qty + "|" + id_user);
             if (kode_barang == "") {
                 swal("Ooops!", "Parts ID must be filled!", "warning");
             } else if (qty == "" || qty == 0) {
