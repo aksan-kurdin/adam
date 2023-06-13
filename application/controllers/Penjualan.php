@@ -129,6 +129,20 @@ class Penjualan extends CI_Controller
         $saved = $this->M_penjualan->insert($data, $jenis_transaksi, $id_user, $no_faktur);
     }
 
+    function delete()
+    {
+        $no_faktur = $this->uri->segment(3);
+        $deleted = $this->M_penjualan->delete($no_faktur);
+    }
+
+    function printout()
+    {
+        $no_faktur = $this->uri->segment(3);
+        $data['penjualan'] = $this->M_penjualan->get($no_faktur)->row_array();
+        $data['detail'] = $this->M_penjualan->get_detail($no_faktur)->result();
+        $this->load->view('penjualan/v_print', $data);
+    }
+
     function get_tgl_jatuh_tempo()
     {
         $tgl_transaksi = $this->input->post('tgl_transaksi');

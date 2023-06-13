@@ -21,50 +21,6 @@ class M_penjualan extends CI_Model
         return $this->db->get();
     }
 
-    function get_rows($no_faktur, $nama_pelanggan, $tgl_mulai, $tgl_akhir)
-    {
-        $this->db->select('no_faktur, tgltransaksi, kode_pelanggan, nama_pelanggan, jenistransaksi, jatuhtempo, id_user, nama_lengkap, total_jual, total_bayar, sisa');
-        $this->db->from('v_total_penjualan');
-        if ($no_faktur != '') {
-            $this->db->where('no_faktur', $no_faktur);
-        }
-        if ($nama_pelanggan != '') {
-            $this->db->like('nama_pelanggan', $nama_pelanggan);
-        }
-        if ($tgl_mulai != '') {
-            $this->db->where('tgltransaksi >=', $tgl_mulai);
-        }
-        if ($tgl_akhir != '') {
-            $this->db->where('tgltransaksi <=', $tgl_akhir);
-        }
-        return $this->db->get();
-    }
-
-    function cek_barang()
-    {
-        $id_user = $this->session->userdata('id_user');
-        return $this->db->get_where('penjualan_detail_temp', array('id_user' => $id_user));
-    }
-
-    function get_last_invoice_no($bulan, $tahun, $cabang)
-    {
-        $this->db->select('no_faktur');
-        $this->db->from('penjualan');
-        $this->db->join('users', 'penjualan.id_user = users.id_user');
-        $this->db->where('kode_cabang', $cabang);
-        $this->db->where('MONTH(tgltransaksi)', $bulan);
-        $this->db->where('YEAR(tgltransaksi)', $tahun);
-        $this->db->order_by('no_faktur', 'desc');
-        $this->db->limit(1);
-
-        return $this->db->get();
-    }
-
-    function is_temp_exist($kode_barang, $id_user)
-    {
-        return $this->db->get_where('penjualan_detail_temp', array('kode_barang' => $kode_barang, 'id_user' => $id_user));
-    }
-
     function insert($data)
     {
         $penjualan_saved = $this->db->insert('penjualan', $data);
@@ -137,6 +93,81 @@ class M_penjualan extends CI_Model
             $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"> <i class = "fa fa-close mr-2"></i> Failed to save! </div>');
             redirect('penjualan/input');
         }
+    }
+
+    function delete($no_faktur)
+    {
+        $deleted = $this->db->delete('penjualan', array('no_faktur' => $no_faktur));
+        if ($deleted) {
+            $detail_deleted = $this->db->delete('penjualan_detail', array('no_faktur' => $no_faktur));
+            if ($detail_deleted) {
+                $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Deleting successfully</div>');
+                redirect('penjualan');
+            }
+        }
+    }
+
+    function get($no_faktur)
+    {
+        $this->db->select('penjualan.no_faktur, tgltransaksi, penjualan.kode_pelanggan, nama_pelanggan, alamat_pelanggan, jenistransaksi, jatuhtempo, penjualan.id_user, nama_lengkap as cashier');
+        $this->db->from('penjualan');
+        $this->db->join('pelanggan', 'penjualan.kode_pelanggan = pelanggan.kode_pelanggan');
+        $this->db->join('users', 'penjualan.id_user = users.id_user');
+        $this->db->where('penjualan.no_faktur', $no_faktur);
+        return $this->db->get();
+    }
+
+    function get_detail($no_faktur)
+    {
+        $this->db->select('penjualan_detail.kode_barang, nama_barang, penjualan_detail.harga, qty, satuan');
+        $this->db->from('penjualan_detail');
+        $this->db->join('barang_master', 'penjualan_detail.kode_barang = barang_master.kode_barang');
+        $this->db->where('penjualan_detail.no_faktur', $no_faktur);
+        return $this->db->get();
+    }
+
+    function get_rows($no_faktur, $nama_pelanggan, $tgl_mulai, $tgl_akhir)
+    {
+        $this->db->select('no_faktur, tgltransaksi, kode_pelanggan, nama_pelanggan, jenistransaksi, jatuhtempo, id_user, nama_lengkap, total_jual, total_bayar, sisa');
+        $this->db->from('v_total_penjualan');
+        if ($no_faktur != '') {
+            $this->db->where('no_faktur', $no_faktur);
+        }
+        if ($nama_pelanggan != '') {
+            $this->db->like('nama_pelanggan', $nama_pelanggan);
+        }
+        if ($tgl_mulai != '') {
+            $this->db->where('tgltransaksi >=', $tgl_mulai);
+        }
+        if ($tgl_akhir != '') {
+            $this->db->where('tgltransaksi <=', $tgl_akhir);
+        }
+        return $this->db->get();
+    }
+
+    function cek_barang()
+    {
+        $id_user = $this->session->userdata('id_user');
+        return $this->db->get_where('penjualan_detail_temp', array('id_user' => $id_user));
+    }
+
+    function get_last_invoice_no($bulan, $tahun, $cabang)
+    {
+        $this->db->select('no_faktur');
+        $this->db->from('penjualan');
+        $this->db->join('users', 'penjualan.id_user = users.id_user');
+        $this->db->where('kode_cabang', $cabang);
+        $this->db->where('MONTH(tgltransaksi)', $bulan);
+        $this->db->where('YEAR(tgltransaksi)', $tahun);
+        $this->db->order_by('no_faktur', 'desc');
+        $this->db->limit(1);
+
+        return $this->db->get();
+    }
+
+    function is_temp_exist($kode_barang, $id_user)
+    {
+        return $this->db->get_where('penjualan_detail_temp', array('kode_barang' => $kode_barang, 'id_user' => $id_user));
     }
 
     function insert_temp($data)

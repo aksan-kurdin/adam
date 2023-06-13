@@ -120,8 +120,10 @@
                                 <td align="right"><?php echo number_format(($p->sisa), '0', '', '.') ?></td>
                                 <td align="center"><span class="badge <?php echo $bg_color; ?>"><?php echo $remarks ?></span></td>
                                 <td><?php echo $p->id_user ?></td>
-                                <td></td>
-
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url('penjualan/delete/' . $p->no_faktur); ?>"><i class="fa fa-trash-o"></i></a>
+                                    <a href="<?php echo base_url('penjualan/printout/' . $p->no_faktur); ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i></a>
+                                </td>
                             </tr>
                         <?php $no++;
                         }
@@ -135,6 +137,22 @@
         </div>
     </div>
 </div>
+<div class="modal modal-blur fade" id="modalDelete" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-title">Are you sure?</div>
+                <div>If you proceed, you will lose this data permanently.</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link link-secondary mr-auto" data-dismiss="modal">Cancel</button>
+                <a href="#" id="href-delete" class="btn btn-danger">Yes, delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -143,5 +161,17 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         flatpickr(document.getElementById('tgl_akhir'), {});
+    });
+</script>
+
+<script>
+    $(function() {
+        $(function() {
+            $(".delete").click(function() {
+                var href = $(this).attr("data-href");
+                $("#modalDelete").modal("show");
+                $("#href-delete").attr("href", href);
+            });
+        });
     });
 </script>
