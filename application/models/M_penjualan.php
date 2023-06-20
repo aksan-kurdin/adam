@@ -145,6 +145,8 @@ class M_penjualan extends CI_Model
         return $this->db->get();
     }
 
+
+
     function cek_barang()
     {
         $id_user = $this->session->userdata('id_user');
@@ -164,6 +166,8 @@ class M_penjualan extends CI_Model
 
         return $this->db->get();
     }
+
+
 
     function is_temp_exist($kode_barang, $id_user)
     {

@@ -8,6 +8,7 @@ class Penjualan extends CI_Controller
         $this->load->model('M_penjualan');
         $this->load->model('M_pelanggan');
         $this->load->model('M_harga');
+        $this->load->model('M_bayar');
     }
 
     function index($row_no = 0)
@@ -143,6 +144,8 @@ class Penjualan extends CI_Controller
         $this->load->view('penjualan/v_print', $data);
     }
 
+
+
     function get_tgl_jatuh_tempo()
     {
         $tgl_transaksi = $this->input->post('tgl_transaksi');
@@ -155,6 +158,8 @@ class Penjualan extends CI_Controller
         $jmldatabarang = $this->M_penjualan->cek_barang()->num_rows;
         echo $jmldatabarang;
     }
+
+
 
     function save_temp()
     {
@@ -190,5 +195,35 @@ class Penjualan extends CI_Controller
             $this->input->post('iduser')
         );
         echo $deleted;
+    }
+
+
+    function detailfaktur()
+    {
+        $no_faktur = $this->uri->segment(3);
+        $data['penjualan'] = $this->M_penjualan->get($no_faktur)->row_array();
+        $data['detail'] = $this->M_penjualan->get_detail($no_faktur)->result();
+        $data['bayar'] = $this->M_bayar->get($no_faktur)->result();
+        $this->template->load('template/template', 'penjualan/v_detailfaktur', $data);
+    }
+
+    function input_pay()
+    {
+        $data['no_faktur'] = $this->input->post('no_faktur');
+        $data['grand_total'] = $this->input->post('grand_total');
+        $data['total_paid'] = $this->input->post('total_paid');
+        $this->load->view('penjualan/i_pay', $data);
+    }
+
+    function save_pay()
+    {
+        $this->M_bayar->insert_pay();
+    }
+
+    function delete_pay()
+    {
+        $no_bukti = $this->uri->segment(3);
+        $no_faktur = $this->uri->segment(4);
+        $this->M_bayar->delete($no_bukti, $no_faktur);
     }
 }
