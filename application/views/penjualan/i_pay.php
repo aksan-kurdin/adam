@@ -1,7 +1,9 @@
-<form action="<?php echo base_url('penjualan/save_pay'); ?>" method="post" id="form_pay">
+<form id="form_pay" action="<?php echo base_url('penjualan/save_pay'); ?>" method="post">
+
     <input type="hidden" name="no_faktur" value="<?php echo $no_faktur; ?>">
-    <input type="text" name="g_total" value="<?php echo $grand_total; ?>" id="g_total">
-    <input type="text" name="total_paid" value="<?php echo $total_paid; ?>" id="total_paid">
+    <input type="hidden" name="g_total" value="<?php echo $grand_total; ?>" id="g_total">
+    <input type="hidden" name="total_paid" value="<?php echo $total_paid; ?>" id="total_paid">
+    
     <div class="input-icon mb-3">
         <span class="input-icon-addon">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -39,15 +41,6 @@
         var g_total = $("#g_total").val();
         var total_paid = $("#total_paid").val();
         var rest_paid = parseInt(g_total) - parseInt(total_paid);
-
-        // console.log('jmlbayar:' + jmlbayar);
-        // console.log('g_total:' + g_total);
-        // console.log('total_paid:' + total_paid);
-        // console.log('rest_paid:' + rest_paid);
-        // if (parseInt(jmlbayar) > parseInt(rest_paid)) {
-        //     swal("Oops !", "Total paid should not exceed rest paid. Your rest paid is " + rest_paid, "warning");
-        // };
-        // return false;
 
         if (jmlbayar == "" || jmlbayar == 0) {
             swal("Oops !", "Please fill pay amount!", "warning");

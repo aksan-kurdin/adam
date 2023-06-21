@@ -52,7 +52,7 @@ class M_penjualan extends CI_Model
                     if ($data['jenistransaksi'] == "cash") {
                         $tahun = date('Y');
                         $thn = substr($tahun, 2, 2);
-                        $getLastNoBukti = $this->db->query("SELECT nobukti FROM historibayar WHERE YEAR(tglbayar) = '$tahun'")->row_array();
+                        $getLastNoBukti = $this->db->query("SELECT nobukti FROM historibayar WHERE YEAR(tglbayar) = '$tahun' ORDER BY nobukti DESC limit 1")->row_array();
                         if (!$getLastNoBukti) {
                             $nomorterakhir = $thn . '000000';
                         } else {
