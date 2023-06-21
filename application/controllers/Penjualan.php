@@ -9,6 +9,7 @@ class Penjualan extends CI_Controller
         $this->load->model('M_pelanggan');
         $this->load->model('M_harga');
         $this->load->model('M_bayar');
+        $this->load->model('M_cabang');
     }
 
     function index($row_no = 0)
@@ -144,6 +145,23 @@ class Penjualan extends CI_Controller
         $this->load->view('penjualan/v_print', $data);
     }
 
+    function report()
+    {
+        $data['cabang'] = $this->M_cabang->list()->result();
+        $this->template->load('template/template', 'penjualan/f_laporanpenjualan', $data);
+    }
+
+    function print_report()
+    {
+        $cabang = $this->input->post('cabang');
+        $tgl_mulai = $this->input->post('tgl_mulai');
+        $tgl_akhir = $this->input->post('tgl_akhir');
+        $data['cabang'] = $cabang;
+        $data['tgl_mulai'] = $tgl_mulai;
+        $data['tgl_akhir'] = $tgl_akhir;
+        $data['rpt_data'] = $this->M_penjualan->get_reportdata($cabang, $tgl_mulai, $tgl_akhir)->result();
+        $this->load->view('penjualan/r_penjualan', $data);
+    }
 
 
     function get_tgl_jatuh_tempo()

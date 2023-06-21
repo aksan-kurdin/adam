@@ -89,60 +89,64 @@
                         <button type="submit" name="submit" class="btn btn-primary w-100"><i class="fa fa-search mr-2"></i>Find...</button>
                     </div>
                 </form>
-
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <th>No</th>
-                        <th>Invoice No</th>
-                        <th>Date</th>
-                        <th>Cust ID</th>
-                        <th>Cust Name</th>
-                        <th>Transaction Type</th>
-                        <th>T.O.P</th>
-                        <th>Total Penjualan</th>
-                        <th>Total Pembayaran</th>
-                        <th>Sisa Pembayaran</th>
-                        <th>Remarks</th>
-                        <th>Cashier</th>
-                        <th>Action</th>
-                    </thead>
-                    <tbody>
-                        <?php $no = $row + 1;
-                        foreach ($penjualan as $p) {
-                            if ($p->sisa > 0) {
-                                $remarks = 'BELUM LUNAS';
-                                $bg_color = 'bg-red';
-                            } else {
-                                $remarks = 'LUNAS';
-                                $bg_color = 'bg-green';
-                            }
-                        ?>
-                            <tr>
-                                <td><?php echo $no; ?></td>
-                                <td><?php echo $p->no_faktur ?></td>
-                                <td><?php echo $p->tgltransaksi ?></td>
-                                <td><?php echo $p->kode_pelanggan ?></td>
-                                <td><?php echo $p->nama_pelanggan ?></td>
-                                <td><?php echo $p->jenistransaksi ?></td>
-                                <td><?php echo $p->jatuhtempo ?></td>
-                                <td align="right"><?php echo number_format($p->total_jual, '0', '', '.') ?></td>
-                                <td align="right"><?php echo number_format($p->total_bayar, '0', '', '.') ?></td>
-                                <td align="right"><?php echo number_format(($p->sisa), '0', '', '.') ?></td>
-                                <td align="center"><span class="badge <?php echo $bg_color; ?>"><?php echo $remarks ?></span></td>
-                                <td><?php echo $p->id_user ?></td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url('penjualan/delete/' . $p->no_faktur); ?>"><i class="fa fa-trash-o"></i></a>
-                                    <a href="<?php echo base_url('penjualan/printout/' . $p->no_faktur); ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i></a>
-                                    <?php if ($p->sisa > 0) { ?>
-                                        <a href="<?php echo base_url('penjualan/detailfaktur/' . $p->no_faktur); ?>" class="btn btn-sm btn-success">Pay</a>
-                                    <?php } ?>
-                                </td>
-                            </tr>
-                        <?php $no++;
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <th>No</th>
+                                <th>Invoice No</th>
+                                <th>Date</th>
+                                <th>Cust ID</th>
+                                <th>Cust Name</th>
+                                <th>Transaction Type</th>
+                                <th>T.O.P</th>
+                                <th>Total Penjualan</th>
+                                <th>Total Pembayaran</th>
+                                <th>Sisa Pembayaran</th>
+                                <th>Remarks</th>
+                                <th>Cashier</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <?php $no = $row + 1;
+                                foreach ($penjualan as $p) {
+                                    if ($p->sisa > 0) {
+                                        $remarks = 'BELUM LUNAS';
+                                        $bg_color = 'bg-red';
+                                    } else {
+                                        $remarks = 'LUNAS';
+                                        $bg_color = 'bg-green';
+                                    }
+                                ?>
+                                    <tr>
+                                        <td><?php echo $no; ?></td>
+                                        <td><a href="<?php echo base_url('penjualan/detailfaktur/' . $p->no_faktur); ?>">
+                                                <?php echo $p->no_faktur ?></a></td>
+                                        <td><?php echo $p->tgltransaksi ?></td>
+                                        <td><?php echo $p->kode_pelanggan ?></td>
+                                        <td><?php echo $p->nama_pelanggan ?></td>
+                                        <td><?php echo $p->jenistransaksi ?></td>
+                                        <td><?php echo $p->jatuhtempo ?></td>
+                                        <td align="right"><?php echo number_format($p->total_jual, '0', '', '.') ?></td>
+                                        <td align="right"><?php echo number_format($p->total_bayar, '0', '', '.') ?></td>
+                                        <td align="right"><?php echo number_format(($p->sisa), '0', '', '.') ?></td>
+                                        <td align="center"><span class="badge <?php echo $bg_color; ?>"><?php echo $remarks ?></span></td>
+                                        <td><?php echo $p->id_user ?></td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url('penjualan/delete/' . $p->no_faktur); ?>"><i class="fa fa-trash-o"></i></a>
+                                            <a href="<?php echo base_url('penjualan/printout/' . $p->no_faktur); ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i></a>
+                                            <?php if ($p->sisa > 0) { ?>
+                                                <a href="<?php echo base_url('penjualan/detailfaktur/' . $p->no_faktur); ?>" class="btn btn-sm btn-success">Pay</a>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php $no++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <div>
                     <?php echo $pagination; ?>
                 </div>

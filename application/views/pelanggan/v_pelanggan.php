@@ -1,6 +1,4 @@
-<h2 class="page-title">
-    Master: Customer
-</h2>
+<h2 class="page-title">Master: Customer</h2>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -10,7 +8,8 @@
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>Add New</a>
+                    </svg>Add New
+                </a>
                 <div class="mb-3">
                     <?php echo $this->session->flashdata('msg'); ?>
                 </div>
@@ -105,24 +104,21 @@
     $(function() {
         $("#add").click(function() {
             $("#modalAdd").modal("show");
-            $("#formAdd").load("<?php echo base_url(); ?>pelanggan/input");
+            $("#formAdd").load("<?php echo base_url('pelanggan/input'); ?>");
         });
-    });
 
-    $(function() {
         $(".edit").click(function() {
             var kode_pelanggan = $(this).attr("data-cust_id");
             $("#modalEdit").modal("show");
-            $("#formEdit").load("<?php echo base_url(); ?>pelanggan/edit/" + kode_pelanggan);
+            $("#formEdit").load("<?php echo base_url('pelanggan/edit/'); ?>" + kode_pelanggan);
         });
-    });
 
-    $(function() {
         $(".delete").click(function() {
             var href = $(this).attr("data-href");
             $("#modalDelete").modal("show");
             $("#href-delete").attr("href", href);
         });
+
     });
 
     $("#list").DataTable();

@@ -195,4 +195,16 @@ class M_penjualan extends CI_Model
             return 1;
         }
     }
+
+    function get_reportdata($cabang, $tgl_mulai, $tgl_akhir)
+    {
+        if ($cabang != "") {
+            $this->db->where('kode_cabang', $cabang);
+        }
+        $this->db->where('tgltransaksi >=', $tgl_mulai);
+        $this->db->where('tgltransaksi <=', $tgl_akhir);
+        $this->db->select('no_faktur, tgltransaksi, kode_pelanggan, nama_pelanggan, jenistransaksi, jatuhtempo, id_user, nama_lengkap, total_jual, total_bayar, sisa');
+        $this->db->from('v_total_penjualan');
+        return $this->db->get();
+    }
 }

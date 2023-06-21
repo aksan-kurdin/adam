@@ -11,6 +11,7 @@ class M_pelanggan extends CI_Model
         $this->db->join('cabang', 'pelanggan.kode_cabang = cabang.kode_cabang');
         return $this->db->get('pelanggan');
     }
+
     function insert($data)
     {
         $inserted = $this->db->insert('pelanggan', $data);

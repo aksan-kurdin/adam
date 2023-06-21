@@ -170,7 +170,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>penjualan">
+                                    <a class="dropdown-item" href="<?php echo base_url('penjualan'); ?>">
                                         Selling Transaction
                                     </a>
                                 </div>
@@ -195,7 +195,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="./empty.html">
+                                    <a class="dropdown-item" href="<?php echo base_url('penjualan/report') ?>">
                                         Selling Report
                                     </a>
                                 </div>
