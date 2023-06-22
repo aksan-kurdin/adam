@@ -5,12 +5,15 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <a href="#" class="btn btn-success mb-3" id="add">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>Add New</a>
+                <?php if ($this->session->userdata('level') == "administrator") { ?>
+                    <a href="#" class="btn btn-success mb-3" id="add">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>Add New
+                    </a>
+                <?php } ?>
                 <div class="mb-3">
                     <?php echo $this->session->flashdata('msg'); ?>
                 </div>
@@ -24,7 +27,9 @@
                         <th>Price</th>
                         <th>Stock</th>
                         <th>Branch</th>
-                        <th>Action</th>
+                        <?php if ($this->session->userdata('level') == "administrator") { ?>
+                            <th>Action</th>
+                        <?php } ?>
                     </thead>
                     <tbody>
                         <?php
@@ -40,14 +45,16 @@
                                 <td align="right"> <?php echo number_format($h->harga, '0', '', '.'); ?> </td>
                                 <td> <?php echo $h->stok; ?> </td>
                                 <td> <?php echo $h->kode_cabang; ?> </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-primary edit" data-kode_harga="<?php echo $h->kode_harga; ?>">
-                                        <i class="fa fa-solid fa-pencil"> </i>
-                                    </a>
-                                    <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>harga/delete/<?php echo $h->kode_harga; ?>">
-                                        <i class=" fa fa-trash-o"> </i>
-                                    </a>
-                                </td>
+                                <?php if ($this->session->userdata('level') == "administrator") { ?>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-primary edit" data-kode_harga="<?php echo $h->kode_harga; ?>">
+                                            <i class="fa fa-solid fa-pencil"> </i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-danger delete" data-href="<?php echo base_url(); ?>harga/delete/<?php echo $h->kode_harga; ?>">
+                                            <i class=" fa fa-trash-o"> </i>
+                                        </a>
+                                    </td>
+                                <?php } ?>
                             </tr>
 
                         <?php

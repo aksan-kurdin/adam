@@ -5,6 +5,7 @@ class Harga extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        checkIfNotLoginYet();
         $this->load->model('M_harga');
         $this->load->model('M_barang');
         $this->load->model('M_cabang');

@@ -5,6 +5,7 @@ class Barang extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        checkIfNotLoginYet();
         $this->load->model('M_barang');
         $this->load->model('M_cabang');
         $this->load->model('M_harga');

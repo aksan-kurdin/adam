@@ -5,6 +5,7 @@ class Cabang extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        checkIfNotLoginYet();
         $this->load->model('M_cabang');
     }
 

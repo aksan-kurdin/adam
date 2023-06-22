@@ -11,14 +11,19 @@
     <div class="form-group mb-3">
         <input type="text" class="form-control" name="no_hp" placeholder="Mobile NO">
     </div>
-    <div class="form-group mb-3">
-        <select name="cabang" class="form-select">
-            <option value="">Select Branch</option>
-            <?php foreach ($cabang as $c) { ?>
-                <option value="<?php echo $c->kode_cabang; ?>"><?php echo $c->nama_cabang; ?></option>
-            <?php } ?>
-        </select>
-    </div>
+    <?php if ($this->session->userdata('kode_cabang') == "PST") { ?>
+        <div class="form-group mb-3">
+            <select name="cabang" class="form-select">
+                <option value="">Select Branch</option>
+                <?php foreach ($cabang as $c) { ?>
+                    <option value="<?php echo $c->kode_cabang; ?>"><?php echo $c->nama_cabang; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    <?php } else { ?>
+        <input type="hidden" value="<?php echo $this->session->userdata('kode_cabang') ?>" name="cabang">
+
+    <?php } ?>
 
     <div class="mb-3">
         <button type="submit" class="btn btn-primary w-100">
