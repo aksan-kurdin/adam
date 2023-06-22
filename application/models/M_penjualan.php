@@ -207,4 +207,33 @@ class M_penjualan extends CI_Model
         $this->db->from('v_total_penjualan');
         return $this->db->get();
     }
+
+    function get_monthlysale()
+    {
+        $tahun = date("Y");
+        $cabang = $this->session->userdata('kode_cabang');
+
+        if ($cabang == 'PST') {
+            $sql = "SELECT b.id, b.bulan, j.tahun, j.sale FROM bulan AS b"
+                . " LEFT JOIN ("
+                . " SELECT YEAR(h.tgltransaksi) as tahun, MONTH(h.tgltransaksi) AS bulan, SUM(d.harga * d.qty) AS sale"
+                . " FROM penjualan_detail AS d"
+                . " INNER JOIN penjualan AS h ON d.no_faktur = h.no_faktur "
+                . " INNER JOIN users AS u ON h.id_user = u.id_user"
+                . " WHERE YEAR(h.tgltransaksi) = $tahun "
+                . " GROUP BY YEAR(h.tgltransaksi), MONTH(h.tgltransaksi) "
+                . " ) as j ON (b.id = j.bulan)";
+        } else {
+            $sql = "SELECT b.id, b.bulan, j.tahun, j.sale FROM bulan AS b"
+                . " LEFT JOIN ("
+                . " SELECT YEAR(h.tgltransaksi) as tahun, MONTH(h.tgltransaksi) AS bulan, SUM(d.harga * d.qty) AS sale"
+                . " FROM penjualan_detail AS d"
+                . " INNER JOIN penjualan AS h ON d.no_faktur = h.no_faktur "
+                . " INNER JOIN users AS u ON h.id_user = u.id_user"
+                . " WHERE YEAR(h.tgltransaksi) = $tahun AND u.kode_cabang = '$cabang'"
+                . " GROUP BY YEAR(h.tgltransaksi), MONTH(h.tgltransaksi) "
+                . " ) as j ON (b.id = j.bulan)";
+        }
+        return $this->db->query($sql);
+    }
 }

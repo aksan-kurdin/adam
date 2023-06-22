@@ -97,9 +97,79 @@
                 <h3 class="card-title">Selling Graphs</h3>
             </div>
             <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                    neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
+                <?php foreach ($monthlysale as $s) {
+                    $bulan[] = $s->bulan;
+                    $totalsale[] = $s->sale;
+                }
+                ?>
+                <div id="chart-tasks-overview"></div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    // @formatter:off
+    document.addEventListener("DOMContentLoaded", function() {
+        window.ApexCharts && (new ApexCharts(document.getElementById('chart-tasks-overview'), {
+            chart: {
+                type: "bar",
+                fontFamily: 'inherit',
+                height: 320,
+                parentHeightOffset: 0,
+                toolbar: {
+                    show: false,
+                },
+                animations: {
+                    enabled: false
+                },
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '50%',
+                }
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            fill: {
+                opacity: 1,
+            },
+            series: [{
+                name: "A",
+                data: <?php echo json_encode($totalsale); ?>
+            }],
+            grid: {
+                padding: {
+                    top: -20,
+                    right: 0,
+                    left: -4,
+                    bottom: -4
+                },
+                strokeDashArray: 4,
+            },
+            xaxis: {
+                labels: {
+                    padding: 0
+                },
+                tooltip: {
+                    enabled: false
+                },
+                axisBorder: {
+                    show: false,
+                },
+                categories: <?php echo json_encode($bulan); ?>,
+            },
+            yaxis: {
+                labels: {
+                    padding: 4
+                },
+            },
+            colors: ["#206bc4"],
+            legend: {
+                show: false,
+            },
+        })).render();
+    });
+    // @formatter:on
+</script>

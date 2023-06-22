@@ -6,10 +6,12 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         checkIfNotLoginYet();
+        $this->load->model('M_penjualan');
     }
 
     function index()
     {
-        $this->template->load('template/template', 'dashboard/dashboard');
+        $data['monthlysale'] = $this->M_penjualan->get_monthlysale()->result();
+        $this->template->load('template/template', 'dashboard/dashboard', $data);
     }
 }
