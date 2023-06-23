@@ -21,6 +21,27 @@ class M_penjualan extends CI_Model
         return $this->db->get();
     }
 
+    function listtoday()
+    {
+        $today = date("Y-m-d");
+        if ($this->session->userdata('kode_cabang') != 'PST') {
+            $this->db->where('users.kode_cabang', $this->session->userdata('kode_cabang'));
+        }
+        $this->db->join('users', 'penjualan.id_user=users.id_user');
+        return $this->db->get_where('penjualan', array('tgltransaksi' => $today));
+    }
+
+    function resulttoday()
+    {
+        $today = date("Y-m-d");
+        $this->db->select("SUM(bayar) as tot_paid");
+        $this->db->from("historibayar");
+        $this->db->join("penjualan", "historibayar.no_faktur=penjualan.no_faktur");
+        $this->db->join("users", "users.id_user=penjualan.id_user");
+        $this->db->where("tglbayar", $today);
+        return $this->db->get();
+    }
+
     function insert($data)
     {
         $penjualan_saved = $this->db->insert('penjualan', $data);

@@ -21,7 +21,7 @@
                 </span>
                 <div class="mr-3">
                     <div class="font-weight-medium">
-                        1,352 Customers
+                        <?= $tot_cust; ?> Customers
                     </div>
                     <div class="text-muted">Customers</div>
                 </div>
@@ -40,7 +40,7 @@
                 </span>
                 <div class="mr-3">
                     <div class="font-weight-medium">
-                        132 Transactions
+                        <?= $tot_sale; ?> Transactions
                     </div>
                     <div class="text-muted">Transactions</div>
                 </div>
@@ -64,7 +64,7 @@
                 </span>
                 <div class="mr-3">
                     <div class="font-weight-medium">
-                        10 Branches
+                        <?= $tot_branches; ?> Branches
                     </div>
                     <div class="text-muted">Branches</div>
                 </div>
@@ -82,7 +82,7 @@
                 </span>
                 <div class="mr-3">
                     <div class="font-weight-medium">
-                        100,000,000
+                        <?= number_format($tot_paid['tot_paid'], "0", "", "."); ?>
                     </div>
                     <div class="text-muted">Today Result Income</div>
                 </div>
